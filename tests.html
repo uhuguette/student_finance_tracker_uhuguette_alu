@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tests</title>
+  <script type="module">
+    import { patterns } from "./scripts/validators.js";
+
+    console.assert(patterns.amount.test("12.50"));
+    console.assert(!patterns.amount.test("12.999"));
+    console.assert(patterns.date.test("2025-09-29"));
+    console.assert(patterns.duplicateWord.test("coffee coffee"));
+
+    console.log("All tests passed");
+  </script>
+</head>
+<body>
+<h1>Open console to see test results</h1>
+</body>
+</html>

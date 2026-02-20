@@ -4,16 +4,9 @@ import { compileRegex, highlight } from "./search.js";
 
 let sortField = "date";
 let asc = true;
-let editingId = null;
 
 const tableBody = document.getElementById("tableBody");
 const searchInput = document.getElementById("search");
-
-const form = document.getElementById("form");
-const descriptionEl = document.getElementById("description");
-const amountEl = document.getElementById("amount");
-const categoryEl = document.getElementById("category");
-const dateEl = document.getElementById("date");
 
 function renderTransactions() {
   const searchValue = searchInput.value;
@@ -41,15 +34,13 @@ function renderTransactions() {
       <td>$${r.amount.toFixed(2)}</td>
       <td>${r.category}</td>
       <td>
-        <button class="edit-btn" data-id="${r.id}">Edit</button>
-        <button class="delete-btn" data-id="${r.id}">X</button>
+        <button class="edit" data-id="${r.id}">Edit</button>
+        <button class="delete" data-id="${r.id}">X</button>
       </td>
     `;
 
     tableBody.appendChild(row);
   });
-
-  save(state.records);
 }
 
 function setSort(field) {
@@ -59,7 +50,10 @@ function setSort(field) {
 }
 
 function deleteRecord(id) {
+  if (!confirm("Are you sure you want to delete this transaction?")) return;
+
   state.records = state.records.filter(r => r.id !== id);
+  save(state.records);
   renderTransactions();
 }
 
@@ -67,34 +61,25 @@ function editRecord(id) {
   const record = state.records.find(r => r.id === id);
   if (!record) return;
 
-  descriptionEl.value = record.description;
-  amountEl.value = record.amount;
-  categoryEl.value = record.category;
-  dateEl.value = record.date;
+  const newDescription = prompt("Edit description:", record.description);
+  if (newDescription === null) return;
 
-  editingId = id;
-}
+  const newAmount = prompt("Edit amount:", record.amount);
+  if (newAmount === null) return;
 
-form.addEventListener("submit", e => {
-  if (!editingId) return;
+  const newCategory = prompt("Edit category:", record.category);
+  if (newCategory === null) return;
 
-  e.preventDefault();
-
-  const record = state.records.find(r => r.id === editingId);
-  if (!record) return;
-
-  record.description = descriptionEl.value.trim();
-  record.amount = parseFloat(amountEl.value.trim());
-  record.category = categoryEl.value.trim();
-  record.date = dateEl.value.trim();
+  record.description = newDescription.trim();
+  record.amount = parseFloat(newAmount);
+  record.category = newCategory.trim();
   record.updatedAt = new Date().toISOString();
 
-  editingId = null;
-  form.reset();
+  save(state.records);
   renderTransactions();
-});
+}
 
-// Sort
+// Sorting
 document.querySelectorAll("th[data-sort]").forEach(th => {
   th.addEventListener("click", () => setSort(th.dataset.sort));
 });
@@ -102,16 +87,15 @@ document.querySelectorAll("th[data-sort]").forEach(th => {
 // Search
 searchInput.addEventListener("input", renderTransactions);
 
-// Edit & Delete
+// Table actions
 tableBody.addEventListener("click", e => {
   const id = e.target.dataset.id;
-  if (!id) return;
 
-  if (e.target.classList.contains("delete-btn")) {
+  if (e.target.classList.contains("delete")) {
     deleteRecord(id);
   }
 
-  if (e.target.classList.contains("edit-btn")) {
+  if (e.target.classList.contains("edit")) {
     editRecord(id);
   }
 });

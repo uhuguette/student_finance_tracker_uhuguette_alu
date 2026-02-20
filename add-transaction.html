@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Transaction - Student Finance Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header>
+  <h1>Student Finance Tracker</h1>
+  <nav class="nav-menu">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="dashboard.html" class="nav-link">Dashboard</a>
+    <a href="add-transaction.html" class="nav-link active">Add Transaction</a>
+    <a href="transactions.html" class="nav-link">Transactions</a>
+    <a href="settings.html" class="nav-link">Settings</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<section class="card">
+  <h2>Add Transaction</h2>
+  <form id="form">
+    <label>Description
+      <input type="text" id="description" required>
+    </label>
+
+    <label>Amount
+      <input type="text" id="amount" required>
+    </label>
+
+    <label>Category
+      <input type="text" id="category" required>
+    </label>
+
+    <label>Date
+      <input type="date" id="date" required>
+    </label>
+
+    <button type="submit">Add</button>
+    <p id="error" class="error"></p>
+  </form>
+</section>
+
+</main>
+
+<footer>
+  <p>Built by Uwase Huguette</p>
+</footer>
+
+<script type="module" src="scripts/add-transaction.js"></script>
+
+</body>
+</html>

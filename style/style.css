@@ -9,7 +9,43 @@ body {
   color: #333;
 }
 
-header, footer {
+header {
+  background: #1f2937;
+  color: white;
+  padding: 1rem;
+}
+
+header h1 {
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.nav-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #374151;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.nav-link:hover {
+  background: #4b5563;
+}
+
+.nav-link.active {
+  background: #2563eb;
+}
+
+footer {
   background: #1f2937;
   color: white;
   text-align: center;

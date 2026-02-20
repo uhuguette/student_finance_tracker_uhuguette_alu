@@ -39,5 +39,5 @@ form.addEventListener("submit", e => {
   form.reset();
   error.textContent = "";
   save(state.records);
-  render(); // 🔥 updates table
+  render(); //  updates table
 });

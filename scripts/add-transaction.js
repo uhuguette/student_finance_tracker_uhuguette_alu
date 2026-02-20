@@ -1,6 +1,7 @@
 import { state } from "./state.js";
 import { validate } from "./validators.js";
 import { save } from "./storage.js";
+import { render } from "./ui.js";
 
 const form = document.getElementById("form");
 const error = document.getElementById("error");
@@ -38,6 +39,5 @@ form.addEventListener("submit", e => {
   form.reset();
   error.textContent = "";
   save(state.records);
-  
-  alert("Transaction added successfully!");
+  render(); // 🔥 updates table
 });

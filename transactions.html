@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transactions - Student Finance Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header>
+  <h1>Student Finance Tracker</h1>
+  <nav class="nav-menu">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="dashboard.html" class="nav-link">Dashboard</a>
+    <a href="add-transaction.html" class="nav-link">Add Transaction</a>
+    <a href="transactions.html" class="nav-link active">Transactions</a>
+    <a href="settings.html" class="nav-link">Settings</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<section class="card">
+  <h2>Transactions</h2>
+
+  <input type="text" id="search" placeholder="Regex search...">
+
+  <table>
+    <thead>
+      <tr>
+        <th data-sort="date">Date</th>
+        <th data-sort="description">Description</th>
+        <th data-sort="amount">Amount</th>
+        <th data-sort="category">Category</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</section>
+
+</main>
+
+<footer>
+  <p>Built by Uwase Huguette</p>
+</footer>
+
+<script type="module" src="scripts/transactions.js"></script>
+
+</body>
+</html>
